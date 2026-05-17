@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al Waha Co — Excellence in Every Detail</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #7B2D8B;
+    --purple-dark: #5A1E68;
+    --purple-light: #9B4DAB;
+    --navy: #1E1B4B;
+    --navy-light: #2D2A6B;
+    --teal: #0D9488;
+    --cream: #F5F3EE;
+    --white: #FFFFFF;
+    --gray: #6B7280;
+    --gray-light: #E8E6E0;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: #1a1a2e;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 1.2rem 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(30, 27, 75, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.3s;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 0.75rem;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 44px; height: 44px;
+    background: var(--purple);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-icon svg { width: 28px; height: 28px; fill: white; }
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: white;
+    letter-spacing: 0.02em;
+  }
+  .logo-text span { color: var(--purple-light); }
+  nav ul {
+    list-style: none; display: flex; gap: 2.5rem;
+  }
+  nav ul a {
+    text-decoration: none; color: rgba(255,255,255,0.75);
+    font-size: 0.9rem; font-weight: 400; letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    position: relative;
+  }
+  nav ul a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+    height: 1px; background: var(--purple-light);
+    transform: scaleX(0); transition: transform 0.2s;
+  }
+  nav ul a:hover { color: white; }
+  nav ul a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    background: var(--purple); color: white !important;
+    padding: 0.55rem 1.4rem; border-radius: 6px;
+    font-weight: 500 !important; letter-spacing: 0.02em !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--purple-light) !important; }
+  .nav-cta::after { display: none !important; }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: white; border-radius: 2px; transition: all 0.3s;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 0 5%;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 70% 50%, rgba(123,45,139,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(13,148,136,0.15) 0%, transparent 50%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 700px;
+    animation: fadeUp 1s ease both;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(123,45,139,0.3); border: 1px solid rgba(123,45,139,0.5);
+    color: #c084fc; font-size: 0.78rem; font-weight: 500;
+    padding: 0.4rem 1rem; border-radius: 50px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  .hero-badge span { width: 6px; height: 6px; background: #c084fc; border-radius: 50%; animation: pulse 2s infinite; }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 900; line-height: 1.05;
+    color: white; margin-bottom: 1.5rem;
+  }
+  h1 em { font-style: italic; color: var(--purple-light); }
+  .hero-sub {
+    font-size: 1.1rem; line-height: 1.75; color: rgba(255,255,255,0.65);
+    margin-bottom: 2.5rem; max-width: 520px;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--purple); color: white;
+    padding: 0.9rem 2rem; border-radius: 8px;
+    font-weight: 500; font-size: 0.95rem;
+    text-decoration: none; display: inline-block;
+    transition: transform 0.2s, background 0.2s;
+    border: 2px solid var(--purple);
+  }
+  .btn-primary:hover { background: var(--purple-light); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: white;
+    padding: 0.9rem 2rem; border-radius: 8px;
+    font-weight: 500; font-size: 0.95rem;
+    text-decoration: none; display: inline-block;
+    border: 2px solid rgba(255,255,255,0.25);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.6); transform: translateY(-2px); }
+  .hero-stats {
+    position: absolute; right: 5%; bottom: 12%;
+    display: flex; flex-direction: column; gap: 1.5rem;
+    z-index: 2;
+    animation: fadeUp 1.2s ease 0.3s both;
+  }
+  .stat {
+    text-align: right;
+    border-right: 3px solid var(--purple);
+    padding-right: 1.2rem;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 900;
+    color: white; line-height: 1;
+  }
+  .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem; }
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.35); font-size: 0.78rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+    animation: bounce 2s infinite;
+  }
+  .scroll-hint::after {
+    content: ''; width: 1px; height: 50px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 6rem 5%; }
+  .section-tag {
+    display: inline-block;
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 700; line-height: 1.15;
+    margin-bottom: 1.2rem;
+  }
+  .section-lead {
+    font-size: 1.05rem; line-height: 1.8; color: var(--gray);
+    max-width: 600px;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--cream); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: center; max-width: 1200px; margin: 0 auto;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-card {
+    background: var(--navy);
+    border-radius: 20px; overflow: hidden;
+    aspect-ratio: 4/5;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 2.5rem;
+    position: relative;
+  }
+  .about-card-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at top, rgba(123,45,139,0.4), transparent 60%),
+                linear-gradient(to bottom, transparent 40%, rgba(30,27,75,0.95));
+  }
+  .about-card-content { position: relative; z-index: 1; }
+  .about-card-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700; font-style: italic;
+    color: white; line-height: 1.3; margin-bottom: 1rem;
+  }
+  .about-card-attr { color: rgba(255,255,255,0.5); font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .about-accent {
+    position: absolute; top: -20px; right: -20px;
+    width: 120px; height: 120px;
+    background: var(--purple); border-radius: 50%;
+    opacity: 0.15;
+  }
+  .about-accent-2 {
+    position: absolute; bottom: 30px; left: -30px;
+    width: 80px; height: 80px;
+    border: 3px solid var(--teal);
+    border-radius: 50%; opacity: 0.3;
+  }
+  .about-text .section-title { color: var(--navy); }
+  .about-pillars {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-top: 2rem;
+  }
+  .pillar {
+    background: white; border-radius: 12px;
+    padding: 1.4rem; border: 1px solid var(--gray-light);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .pillar:hover { border-color: var(--purple); transform: translateY(-3px); }
+  .pillar-icon {
+    width: 36px; height: 36px;
+    background: rgba(123,45,139,0.1); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 0.75rem; font-size: 1.1rem;
+  }
+  .pillar h4 { font-size: 0.88rem; font-weight: 600; color: var(--navy); margin-bottom: 0.3rem; }
+  .pillar p { font-size: 0.8rem; color: var(--gray); line-height: 1.5; }
+
+  /* ── MISSION / VISION ── */
+  #mission {
+    background: var(--navy);
+    position: relative; overflow: hidden;
+  }
+  #mission::before {
+    content: ''; position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(123,45,139,0.3), transparent 70%);
+  }
+  .mv-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; max-width: 1100px; margin: 0 auto;
+  }
+  .mv-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px; padding: 3rem;
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+  }
+  .mv-card:hover { background: rgba(255,255,255,0.07); }
+  .mv-card::before {
+    content: attr(data-label);
+    position: absolute; top: -0.3rem; right: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 7rem; font-weight: 900;
+    color: rgba(255,255,255,0.025);
+    line-height: 1;
+  }
+  .mv-icon {
+    width: 56px; height: 56px;
+    background: var(--purple); border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; margin-bottom: 1.5rem;
+  }
+  .mv-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700;
+    color: white; margin-bottom: 1rem;
+  }
+  .mv-card p { color: rgba(255,255,255,0.65); line-height: 1.8; font-size: 0.95rem; }
+
+  /* ── SERVICES ── */
+  #services { background: var(--cream); }
+  .services-header { text-align: center; margin-bottom: 4rem; }
+  .services-header .section-title { color: var(--navy); }
+  .services-header .section-lead { margin: 0 auto; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; max-width: 1200px; margin: 0 auto;
+  }
+  .service-card {
+    background: white; border-radius: 16px;
+    padding: 2.2rem; border: 1px solid var(--gray-light);
+    transition: all 0.3s; position: relative; overflow: hidden;
+    cursor: default;
+  }
+  .service-card::after {
+    content: ''; position: absolute;
+    bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--purple);
+    transform: scaleX(0); transition: transform 0.3s;
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(123,45,139,0.12); }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.78rem; font-weight: 700; color: var(--teal);
+    letter-spacing: 0.15em; margin-bottom: 1.2rem;
+  }
+  .service-icon {
+    font-size: 2.2rem; margin-bottom: 1rem;
+  }
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700; color: var(--navy);
+    margin-bottom: 0.75rem;
+  }
+  .service-card p { font-size: 0.88rem; color: var(--gray); line-height: 1.7; }
+  .service-card.featured {
+    background: var(--navy); border-color: transparent;
+  }
+  .service-card.featured h3 { color: white; }
+  .service-card.featured p { color: rgba(255,255,255,0.6); }
+  .service-card.featured .service-num { color: var(--purple-light); }
+  .service-card.featured::after { background: var(--purple-light); }
+
+  /* ── ADDITIONAL SERVICES ── */
+  #additional { background: white; padding: 4rem 5%; }
+  .add-inner { max-width: 1100px; margin: 0 auto; }
+  .add-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+  .add-header .section-title { color: var(--navy); margin-bottom: 0; }
+  .add-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+  .add-item {
+    background: var(--cream); border-radius: 12px;
+    padding: 1.5rem 1.2rem; text-align: center;
+    border: 1px solid var(--gray-light);
+    transition: all 0.25s;
+  }
+  .add-item:hover { background: var(--navy); border-color: var(--navy); }
+  .add-item:hover .add-item-icon { background: var(--purple); }
+  .add-item:hover h4 { color: white; }
+  .add-item-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: rgba(123,45,139,0.1);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 0.75rem; font-size: 1.3rem;
+    transition: background 0.25s;
+  }
+  .add-item h4 { font-size: 0.82rem; font-weight: 600; color: var(--navy); line-height: 1.3; transition: color 0.25s; }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--navy);
+    position: relative; overflow: hidden;
+  }
+  #contact::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 50% 80% at 30% 50%, rgba(123,45,139,0.25), transparent 60%);
+  }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: start; max-width: 1100px; margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+  .contact-info .section-title { color: white; }
+  .contact-info .section-lead { color: rgba(255,255,255,0.6); }
+  .contact-details { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .contact-icon {
+    width: 44px; height: 44px; min-width: 44px;
+    background: rgba(123,45,139,0.3); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+  }
+  .contact-item-text h4 { color: white; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .contact-item-text p { color: rgba(255,255,255,0.55); font-size: 0.88rem; line-height: 1.5; }
+  .contact-form {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 2.5rem;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+  .form-group label { font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.6); letter-spacing: 0.08em; text-transform: uppercase; }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px; padding: 0.85rem 1rem;
+    color: white; font-family: 'DM Sans', sans-serif; font-size: 0.92rem;
+    outline: none; transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--purple-light); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group select option { background: var(--navy); color: white; }
+  .btn-submit {
+    width: 100%; background: var(--purple); color: white;
+    border: none; border-radius: 8px;
+    padding: 1rem; font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; font-weight: 600; cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    letter-spacing: 0.05em;
+  }
+  .btn-submit:hover { background: var(--purple-light); transform: translateY(-1px); }
+  .form-success {
+    display: none; text-align: center; padding: 2rem;
+    color: white;
+  }
+  .form-success .check { font-size: 3rem; margin-bottom: 1rem; }
+  .form-success h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .form-success p { color: rgba(255,255,255,0.6); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0f0d2a; padding: 3rem 5% 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  .footer-brand { display: flex; align-items: center; gap: 0.75rem; }
+  .footer-tagline { font-size: 0.8rem; color: rgba(255,255,255,0.35); margin-top: 0.3rem; }
+  .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .footer-links a { color: rgba(255,255,255,0.45); font-size: 0.82rem; text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: white; }
+  .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.25); width: 100%; text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 1rem; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+
+  /* ── MOBILE NAV ── */
+  @media (max-width: 900px) {
+    nav ul { display: none; }
+    .hamburger { display: flex; }
+    nav ul.open {
+      display: flex; flex-direction: column;
+      position: fixed; top: 70px; left: 0; right: 0;
+      background: var(--navy);
+      padding: 1.5rem 5%; gap: 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-stats { display: none; }
+    h1 { font-size: clamp(2.4rem, 7vw, 3.5rem); }
+  }
+
+  @media (max-width: 768px) {
+    .about-grid, .mv-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .add-grid { grid-template-columns: repeat(2, 1fr); }
+    .form-row { grid-template-columns: 1fr; }
+    .about-pillars { grid-template-columns: 1fr; }
+    section { padding: 4rem 5%; }
+    .about-card { aspect-ratio: 3/2; }
+  }
+
+  @media (max-width: 480px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .add-grid { grid-template-columns: 1fr 1fr; }
+    .hero-btns { flex-direction: column; }
+    .btn-primary, .btn-outline { text-align: center; }
+    .footer-inner { flex-direction: column; text-align: center; }
+    .footer-links { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 8C14 8 8 13 8 18c0 3 2 5.5 5 7l7 5 7-5c3-1.5 5-4 5-7 0-5-6-10-12-10z"/>
+        <ellipse cx="20" cy="30" rx="10" ry="3" opacity="0.6"/>
+      </svg>
+    </div>
+    <span class="logo-text">Al<span>Waha</span> Co</span>
+  </a>
+  <ul id="nav-menu">
+    <li><a href="#about">About</a></li>
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span></span> Dammam, Saudi Arabia</div>
+    <h1>Excellence in<br>Every <em>Detail</em>,<br>Impact in Every<br>Moment.</h1>
+    <p class="hero-sub">Al Waha Co is a premier Media & Events company dedicated to crafting unforgettable experiences and delivering exceptional solutions across Saudi Arabia.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">Explore Our Services</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">8+</div>
+      <div class="stat-label">Core Services</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">KSA</div>
+      <div class="stat-label">Focus Market</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">360°</div>
+      <div class="stat-label">Solutions</div>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual">
+      <div class="about-accent"></div>
+      <div class="about-accent-2"></div>
+      <div class="about-card">
+        <div class="about-card-bg"></div>
+        <div class="about-card-content">
+          <div class="about-card-quote">"Bringing visions to life through innovation."</div>
+          <div class="about-card-attr">Al Waha Co — Est. Dammam, KSA</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <div class="section-tag">Who We Are</div>
+      <h2 class="section-title" style="color:var(--navy)">A Premier Media &amp; Events Company</h2>
+      <p class="section-lead">With years of expertise and a passionate team of professionals, we specialize in bringing visions to life through innovative event planning and cutting-edge media production across the Kingdom.</p>
+      <div class="about-pillars">
+        <div class="pillar reveal reveal-delay-1">
+          <div class="pillar-icon">🎯</div>
+          <h4>Precision</h4>
+          <p>Every detail executed with meticulous care and purpose.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-2">
+          <div class="pillar-icon">💡</div>
+          <h4>Innovation</h4>
+          <p>Adapting to the ever-evolving landscape of media and events.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-3">
+          <div class="pillar-icon">🤝</div>
+          <h4>Partnership</h4>
+          <p>Fostering lasting relationships with every client.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-4">
+          <div class="pillar-icon">🏆</div>
+          <h4>Excellence</h4>
+          <p>Setting new standards of quality in the Kingdom.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION / VISION -->
+<section id="mission">
+  <div class="mv-grid">
+    <div class="mv-card reveal" data-label="M">
+      <div class="mv-icon">🎯</div>
+      <h3>Our Mission</h3>
+      <p>To create memorable and impactful experiences that resonate with Saudi audiences and exceed our clients' expectations. We strive to be the leading force in the media and events industry in Saudi Arabia by delivering high-quality services, fostering lasting relationships, and continuously pushing the boundaries of creativity and innovation.</p>
+    </div>
+    <div class="mv-card reveal reveal-delay-2" data-label="V">
+      <div class="mv-icon">🔭</div>
+      <h3>Our Vision</h3>
+      <p>To become the foremost leader in the Saudi media and events industry, recognized for our exceptional service, innovative solutions, and unparalleled expertise. We aspire to set new standards of excellence and creativity within the Kingdom, inspiring and shaping the future of media and event production.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <div class="section-tag">What We Offer</div>
+    <h2 class="section-title" style="color:var(--navy)">Discover Our Services</h2>
+    <p class="section-lead">We put the needs of the end user at the center of everything we create — from strategy to execution.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-num">01</div>
+      <div class="service-icon">🎨</div>
+      <h3>Branding</h3>
+      <p>From logo design to full brand strategy — every element crafted to reflect your unique values and establish a strong market presence.</p>
+    </div>
+    <div class="service-card featured reveal reveal-delay-2">
+      <div class="service-num">02</div>
+      <div class="service-icon">📱</div>
+      <h3>Digital Marketing</h3>
+      <p>SEO, social media marketing, and email campaigns — leveraging the latest strategies to enhance visibility and drive meaningful results.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-num">03</div>
+      <div class="service-icon">🎬</div>
+      <h3>Content Creation</h3>
+      <p>Video production, photography, bilingual copywriting, and graphic design — compelling content at the heart of your communication.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-num">04</div>
+      <div class="service-icon">🎪</div>
+      <h3>Events Management</h3>
+      <p>Corporate gatherings, conferences, cultural festivals, and private celebrations — seamless experiences with deep cultural understanding.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-num">05</div>
+      <div class="service-icon">🎥</div>
+      <h3>Media Production</h3>
+      <p>TV commercials, documentaries, corporate videos — state-of-the-art production that appeals to the Saudi audience with superior quality.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-num">06</div>
+      <div class="service-icon">🪧</div>
+      <h3>Signage Systems</h3>
+      <p>Custom signage design and manufacturing — architectural, digital, wayfinding, and retail solutions with eco-friendly commitment.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-num">07</div>
+      <div class="service-icon">🪵</div>
+      <h3>Carpentry &amp; Molding</h3>
+      <p>Bespoke cabinetry, furniture, architectural molding, and woodworking — blending traditional crafts with cutting-edge technology.</p>
+    </div>
+    <div class="service-card featured reveal reveal-delay-2">
+      <div class="service-num">08</div>
+      <div class="service-icon">🖼️</div>
+      <h3>Display Stands</h3>
+      <p>Bespoke display stands for retail, exhibitions, and trade shows — professionally installed for impact in any environment.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-num">09</div>
+      <div class="service-icon">⚙️</div>
+      <h3>Fabrication Work</h3>
+      <p>Steel fabrication, stainless steel, visual arts, landscape modelling — comprehensive manufacturing for complete project delivery.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ADDITIONAL SERVICES -->
+<section id="additional" style="background:white; padding:4rem 5%;">
+  <div class="add-inner">
+    <div class="add-header reveal">
+      <div>
+        <div class="section-tag">Comprehensive Capabilities</div>
+        <h2 class="section-title" style="color:var(--navy); margin-bottom:0">Beyond Core Services</h2>
+      </div>
+      <p style="color:var(--gray); font-size:0.9rem; max-width:340px; text-align:right">End-to-end solutions ensuring our clients receive complete service for every requirement.</p>
+    </div>
+    <div class="add-grid">
+      <div class="add-item reveal reveal-delay-1">
+        <div class="add-item-icon">🔩</div>
+        <h4>Fabrication Work</h4>
+      </div>
+      <div class="add-item reveal reveal-delay-2">
+        <div class="add-item-icon">🦺</div>
+        <h4>Stainless Steel Fabrication</h4>
+      </div>
+      <div class="add-item reveal reveal-delay-3">
+        <div class="add-item-icon">🎭</div>
+        <h4>Visual Arts Design &amp; Execute</h4>
+      </div>
+      <div class="add-item reveal reveal-delay-4">
+        <div class="add-item-icon">🌿</div>
+        <h4>Landscape Modelling</h4>
+      </div>
+      <div class="add-item reveal reveal-delay-5">
+        <div class="add-item-icon">🏗️</div>
+        <h4>Steel Fabrication</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <div class="section-tag">Get in Touch</div>
+      <h2 class="section-title" style="color:white">Let's Build Something <em style="font-style:italic; color:var(--purple-light)">Together</em></h2>
+      <p class="section-lead">We pride ourselves on high professional standards and commitment to every project's details. Reach out to start a conversation.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-item-text">
+            <h4>Address</h4>
+            <p>Prince Mohammed Bin Fahad Rd,<br>Al-Shatea Business Center (A),<br>Dammam, Saudi Arabia</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-item-text">
+            <h4>Phone</h4>
+            <p>+966 54 261 7295</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div class="contact-item-text">
+            <h4>Working Hours</h4>
+            <p>Sunday – Thursday: 9:00 AM – 6:00 PM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form reveal reveal-delay-2" id="contact-form-wrap">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Mohammed" id="fname">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Al-Rashid" id="lname">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@example.com" id="email">
+      </div>
+      <div class="form-group">
+        <label>Service Interested In</label>
+        <select id="service">
+          <option value="">Select a service...</option>
+          <option>Branding</option>
+          <option>Digital Marketing</option>
+          <option>Content Creation</option>
+          <option>Events Management</option>
+          <option>Media Production</option>
+          <option>Signage Systems</option>
+          <option>Carpentry & Molding</option>
+          <option>Display Stands</option>
+          <option>Fabrication Work</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us about your project..." id="message"></textarea>
+      </div>
+      <button class="btn-submit" onclick="submitForm()">Send Message →</button>
+      <div class="form-success" id="form-success">
+        <div class="check">✓</div>
+        <h3>Message Sent!</h3>
+        <p>Thank you for reaching out. We'll get back to you within 24 hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <div class="logo-icon" style="width:36px;height:36px;border-radius:9px;">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" style="width:22px;height:22px;fill:white;">
+            <path d="M20 8C14 8 8 13 8 18c0 3 2 5.5 5 7l7 5 7-5c3-1.5 5-4 5-7 0-5-6-10-12-10z"/>
+            <ellipse cx="20" cy="30" rx="10" ry="3" opacity="0.6"/>
+          </svg>
+        </div>
+        <span style="font-family:'Playfair Display',serif;color:white;font-weight:700;font-size:1.1rem;">Al Waha Co</span>
+      </div>
+      <div class="footer-tagline">Excellence in Every Detail, Impact in Every Moment.</div>
+    </div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#mission">Mission</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2025 Al Waha Co. All rights reserved. — Dammam, Saudi Arabia</div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  function toggleMenu() {
+    const menu = document.getElementById('nav-menu');
+    menu.classList.toggle('open');
+  }
+
+  // Close menu on link click
+  document.querySelectorAll('#nav-menu a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('nav-menu').classList.remove('open');
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 60) {
+      nav.style.padding = '0.8rem 5%';
+    } else {
+      nav.style.padding = '1.2rem 5%';
+    }
+  });
+
+  // Form submit
+  function submitForm() {
+    const fname = document.getElementById('fname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    if (!fname || !email) {
+      alert('Please fill in your name and email address.');
+      return;
+    }
+    const form = document.getElementById('contact-form-wrap');
+    form.querySelectorAll('input, textarea, select, button').forEach(el => el.style.display = 'none');
+    const success = document.getElementById('form-success');
+    success.style.display = 'block';
+  }
+</script>
+</body>
+</html>
