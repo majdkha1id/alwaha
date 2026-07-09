@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Al Waha Co — Excellence in Every Detail</title>
 <link rel="icon" type="image/png" href="logo.jpeg">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&family=Cairo:wght@400;600;700;900&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
     --purple: #7B2D8B;
@@ -30,6 +30,24 @@
     color: #1a1a2e;
     overflow-x: hidden;
   }
+
+  /* ── ARABIC / RTL TYPOGRAPHY ── */
+  html[dir="rtl"] body { font-family: 'Tajawal', sans-serif; }
+  html[dir="rtl"] h1,
+  html[dir="rtl"] .section-title,
+  html[dir="rtl"] .about-card-quote,
+  html[dir="rtl"] .mv-card h3,
+  html[dir="rtl"] .service-card h3,
+  html[dir="rtl"] .logo-text,
+  html[dir="rtl"] .footer-brand span,
+  html[dir="rtl"] .form-success h3 {
+    font-family: 'Cairo', sans-serif;
+  }
+  html[dir="rtl"] .stat-num { font-family: 'Cairo', sans-serif; }
+  html[dir="rtl"] .section-title,
+  html[dir="rtl"] .about-card-quote,
+  html[dir="rtl"] .mv-card h3,
+  html[dir="rtl"] .service-card h3 { line-height: 1.5; }
 
   /* ── NAV ── */
   nav {
@@ -69,7 +87,7 @@
   }
   .logo-text span { color: var(--purple-light); }
   nav ul {
-    list-style: none; display: flex; gap: 2.5rem;
+    list-style: none; display: flex; gap: 2.5rem; align-items: center;
   }
   nav ul a {
     text-decoration: none; color: rgba(255,255,255,0.75);
@@ -78,6 +96,7 @@
     transition: color 0.2s;
     position: relative;
   }
+  html[dir="rtl"] nav ul a { text-transform: none; letter-spacing: 0; }
   nav ul a::after {
     content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
     height: 1px; background: var(--purple-light);
@@ -93,6 +112,24 @@
   }
   .nav-cta:hover { background: var(--purple-light) !important; }
   .nav-cta::after { display: none !important; }
+
+  /* Language switch */
+  .lang-switch {
+    display: flex; align-items: center;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50px; padding: 3px; gap: 2px;
+  }
+  .lang-btn {
+    background: transparent; border: none; cursor: pointer;
+    color: rgba(255,255,255,0.6); font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em;
+    padding: 0.35rem 0.8rem; border-radius: 50px;
+    transition: all 0.2s;
+  }
+  .lang-btn.active { background: var(--purple); color: white; }
+  .lang-btn:hover:not(.active) { color: white; }
+
   .hamburger {
     display: none; flex-direction: column; gap: 5px; cursor: pointer;
     padding: 4px;
@@ -107,14 +144,19 @@
     min-height: 100vh;
     background: var(--navy);
     display: flex; align-items: center;
-    position: relative; overflow: hidden;
-    padding: 0 5%;
+    position: relative; overflow-x: hidden;
+    padding: 130px 5% 70px;
   }
   .hero-bg {
     position: absolute; inset: 0;
     background:
       radial-gradient(ellipse 60% 60% at 70% 50%, rgba(123,45,139,0.35) 0%, transparent 60%),
       radial-gradient(ellipse 40% 40% at 20% 80%, rgba(13,148,136,0.15) 0%, transparent 50%);
+  }
+  html[dir="rtl"] .hero-bg {
+    background:
+      radial-gradient(ellipse 60% 60% at 30% 50%, rgba(123,45,139,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 80% 80%, rgba(13,148,136,0.15) 0%, transparent 50%);
   }
   .hero-grid {
     position: absolute; inset: 0; opacity: 0.04;
@@ -135,14 +177,21 @@
     letter-spacing: 0.1em; text-transform: uppercase;
     margin-bottom: 2rem;
   }
+  html[dir="rtl"] .hero-badge { text-transform: none; letter-spacing: 0; }
   .hero-badge span { width: 6px; height: 6px; background: #c084fc; border-radius: 50%; animation: pulse 2s infinite; }
   h1 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(3rem, 6vw, 5.5rem);
-    font-weight: 900; line-height: 1.05;
+    font-weight: 900; line-height: 1.18;
     color: white; margin-bottom: 1.5rem;
   }
   h1 em { font-style: italic; color: var(--purple-light); }
+  html[dir="rtl"] h1 {
+    font-size: clamp(2.4rem, 5.5vw, 4.6rem);
+    line-height: 1.55;
+    font-weight: 700;
+  }
+  html[dir="rtl"] h1 em { font-style: normal; font-weight: 900; }
   .hero-sub {
     font-size: 1.1rem; line-height: 1.75; color: rgba(255,255,255,0.65);
     margin-bottom: 2.5rem; max-width: 520px;
@@ -172,10 +221,18 @@
     z-index: 2;
     animation: fadeUp 1.2s ease 0.3s both;
   }
+  html[dir="rtl"] .hero-stats { right: auto; left: 5%; }
   .stat {
     text-align: right;
     border-right: 3px solid var(--purple);
     padding-right: 1.2rem;
+  }
+  html[dir="rtl"] .stat {
+    text-align: left;
+    border-right: none;
+    border-left: 3px solid var(--purple);
+    padding-right: 0;
+    padding-left: 1.2rem;
   }
   .stat-num {
     font-family: 'Playfair Display', serif;
@@ -183,6 +240,7 @@
     color: white; line-height: 1;
   }
   .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem; }
+  html[dir="rtl"] .stat-label { text-transform: none; letter-spacing: 0; }
   .scroll-hint {
     position: absolute; bottom: 2.5rem; left: 50%;
     transform: translateX(-50%);
@@ -191,6 +249,7 @@
     display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
     animation: bounce 2s infinite;
   }
+  html[dir="rtl"] .scroll-hint { text-transform: none; letter-spacing: 0; }
   .scroll-hint::after {
     content: ''; width: 1px; height: 50px;
     background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
@@ -204,6 +263,7 @@
     letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--teal); margin-bottom: 0.75rem;
   }
+  html[dir="rtl"] .section-tag { text-transform: none; letter-spacing: 0; font-weight: 700; }
   .section-title {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2.2rem, 4vw, 3.2rem);
@@ -243,19 +303,23 @@
     font-size: 1.6rem; font-weight: 700; font-style: italic;
     color: white; line-height: 1.3; margin-bottom: 1rem;
   }
+  html[dir="rtl"] .about-card-quote { font-style: normal; }
   .about-card-attr { color: rgba(255,255,255,0.5); font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  html[dir="rtl"] .about-card-attr { text-transform: none; letter-spacing: 0; }
   .about-accent {
     position: absolute; top: -20px; right: -20px;
     width: 120px; height: 120px;
     background: var(--purple); border-radius: 50%;
     opacity: 0.15;
   }
+  html[dir="rtl"] .about-accent { right: auto; left: -20px; }
   .about-accent-2 {
     position: absolute; bottom: 30px; left: -30px;
     width: 80px; height: 80px;
     border: 3px solid var(--teal);
     border-radius: 50%; opacity: 0.3;
   }
+  html[dir="rtl"] .about-accent-2 { left: auto; right: -30px; }
   .about-text .section-title { color: var(--navy); }
   .about-pillars {
     display: grid; grid-template-columns: 1fr 1fr;
@@ -288,6 +352,7 @@
     border-radius: 50%;
     background: radial-gradient(circle, rgba(123,45,139,0.3), transparent 70%);
   }
+  html[dir="rtl"] #mission::before { right: auto; left: -200px; }
   .mv-grid {
     display: grid; grid-template-columns: 1fr 1fr;
     gap: 3rem; max-width: 1100px; margin: 0 auto;
@@ -308,6 +373,7 @@
     color: rgba(255,255,255,0.025);
     line-height: 1;
   }
+  html[dir="rtl"] .mv-card::before { right: auto; left: 2rem; }
   .mv-icon {
     width: 56px; height: 56px;
     background: var(--purple); border-radius: 14px;
@@ -372,6 +438,8 @@
   .add-inner { max-width: 1100px; margin: 0 auto; }
   .add-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
   .add-header .section-title { color: var(--navy); margin-bottom: 0; }
+  .add-header p { color: var(--gray); font-size: 0.9rem; max-width: 340px; text-align: right; }
+  html[dir="rtl"] .add-header p { text-align: left; }
   .add-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
   .add-item {
     background: var(--cream); border-radius: 12px;
@@ -400,6 +468,9 @@
     content: ''; position: absolute; inset: 0;
     background: radial-gradient(ellipse 50% 80% at 30% 50%, rgba(123,45,139,0.25), transparent 60%);
   }
+  html[dir="rtl"] #contact::before {
+    background: radial-gradient(ellipse 50% 80% at 70% 50%, rgba(123,45,139,0.25), transparent 60%);
+  }
   .contact-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
     align-items: start; max-width: 1100px; margin: 0 auto;
@@ -424,13 +495,14 @@
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
   .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
   .form-group label { font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.6); letter-spacing: 0.08em; text-transform: uppercase; }
+  html[dir="rtl"] .form-group label { text-transform: none; letter-spacing: 0; }
   .form-group input,
   .form-group textarea,
   .form-group select {
     background: rgba(255,255,255,0.07);
     border: 1px solid rgba(255,255,255,0.12);
     border-radius: 8px; padding: 0.85rem 1rem;
-    color: white; font-family: 'DM Sans', sans-serif; font-size: 0.92rem;
+    color: white; font-family: inherit; font-size: 0.92rem;
     outline: none; transition: border-color 0.2s;
     -webkit-appearance: none;
   }
@@ -444,12 +516,13 @@
   .btn-submit {
     width: 100%; background: var(--purple); color: white;
     border: none; border-radius: 8px;
-    padding: 1rem; font-family: 'DM Sans', sans-serif;
+    padding: 1rem; font-family: inherit;
     font-size: 0.95rem; font-weight: 600; cursor: pointer;
     transition: background 0.2s, transform 0.2s;
     letter-spacing: 0.05em;
   }
   .btn-submit:hover { background: var(--purple-light); transform: translateY(-1px); }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
   .form-success {
     display: none; text-align: center; padding: 2rem;
     color: white;
@@ -457,6 +530,11 @@
   .form-success .check { font-size: 3rem; margin-bottom: 1rem; }
   .form-success h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 0.5rem; }
   .form-success p { color: rgba(255,255,255,0.6); }
+  .form-error {
+    display: none; color: #ffb4b4; font-size: 0.85rem;
+    background: rgba(255,80,80,0.1); border: 1px solid rgba(255,80,80,0.3);
+    border-radius: 8px; padding: 0.8rem 1rem; margin-bottom: 1rem;
+  }
 
   /* ── FOOTER ── */
   footer {
@@ -546,13 +624,19 @@
     <div class="logo-icon">
     <img src="logo.jpeg" alt="Al Waha Logo">
 </div>
-    <span class="logo-text">Al<span>Waha</span> Co</span>
+    <span class="logo-text" data-i18n="nav.logo">Al<span>Waha</span> Co</span>
   </a>
   <ul id="nav-menu">
-    <li><a href="#about">About</a></li>
-    <li><a href="#mission">Mission</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+    <li><a href="#about" data-i18n="nav.about">About</a></li>
+    <li><a href="#mission" data-i18n="nav.mission">Mission</a></li>
+    <li><a href="#services" data-i18n="nav.services">Services</a></li>
+    <li><a href="#contact" class="nav-cta" data-i18n="nav.contact">Contact Us</a></li>
+    <li>
+      <div class="lang-switch">
+        <button type="button" class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+        <button type="button" class="lang-btn" data-lang="ar" onclick="setLang('ar')">AR</button>
+      </div>
+    </li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
@@ -564,29 +648,28 @@
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
-    <div class="hero-badge"><span></span> Dammam, Saudi Arabia</div>
-    <h1>Excellence in<br>Every <em>Detail</em>,<br>Impact in Every<br>Moment.</h1>
-    <p class="hero-sub">Al Waha Co is a premier Media & Events company dedicated to crafting unforgettable experiences and delivering exceptional solutions across Saudi Arabia.</p>
+    <h1 data-i18n="hero.h1">Excellence in<br>Every <em>Detail</em>,<br>Impact in Every<br>Moment.</h1>
+    <p class="hero-sub" data-i18n="hero.sub">Al Waha Co is a premier Media & Events company dedicated to crafting unforgettable experiences and delivering exceptional solutions across Saudi Arabia.</p>
     <div class="hero-btns">
-      <a href="#services" class="btn-primary">Explore Our Services</a>
-      <a href="#contact" class="btn-outline">Get in Touch</a>
+      <a href="#services" class="btn-primary" data-i18n="hero.btnPrimary">Explore Our Services</a>
+      <a href="#contact" class="btn-outline" data-i18n="hero.btnOutline">Get in Touch</a>
     </div>
   </div>
   <div class="hero-stats">
     <div class="stat">
-      <div class="stat-num">8+</div>
-      <div class="stat-label">Core Services</div>
+      <div class="stat-num" data-i18n="hero.stat1num">8+</div>
+      <div class="stat-label" data-i18n="hero.stat1label">Core Services</div>
     </div>
     <div class="stat">
-      <div class="stat-num">KSA</div>
-      <div class="stat-label">Focus Market</div>
+      <div class="stat-num" data-i18n="hero.stat2num">KSA</div>
+      <div class="stat-label" data-i18n="hero.stat2label">Focus Market</div>
     </div>
     <div class="stat">
-      <div class="stat-num">360°</div>
-      <div class="stat-label">Solutions</div>
+      <div class="stat-num" data-i18n="hero.stat3num">360°</div>
+      <div class="stat-label" data-i18n="hero.stat3label">Solutions</div>
     </div>
   </div>
-  <div class="scroll-hint">Scroll</div>
+  <div class="scroll-hint" data-i18n="hero.scrollHint">Scroll</div>
 </section>
 
 <!-- ABOUT -->
@@ -598,35 +681,35 @@
       <div class="about-card">
         <div class="about-card-bg"></div>
         <div class="about-card-content">
-          <div class="about-card-quote">"Bringing visions to life through innovation."</div>
-          <div class="about-card-attr">Al Waha Co — Est. Dammam, KSA</div>
+          <div class="about-card-quote" data-i18n="about.cardQuote">"Bringing visions to life through innovation."</div>
+          <div class="about-card-attr" data-i18n="about.cardAttr">Al Waha Co — Est. Dammam, KSA</div>
         </div>
       </div>
     </div>
     <div class="about-text reveal">
-      <div class="section-tag">Who We Are</div>
-      <h2 class="section-title" style="color:var(--navy)">A Premier Media &amp; Events Company</h2>
-      <p class="section-lead">With years of expertise and a passionate team of professionals, we specialize in bringing visions to life through innovative event planning and cutting-edge media production across the Kingdom.</p>
+      <div class="section-tag" data-i18n="about.tag">Who We Are</div>
+      <h2 class="section-title" style="color:var(--navy)" data-i18n="about.title">A Premier Media &amp; Events Company</h2>
+      <p class="section-lead" data-i18n="about.lead">With years of expertise and a passionate team of professionals, we specialize in bringing visions to life through innovative event planning and cutting-edge media production across the Kingdom.</p>
       <div class="about-pillars">
         <div class="pillar reveal reveal-delay-1">
           <div class="pillar-icon">🎯</div>
-          <h4>Precision</h4>
-          <p>Every detail executed with meticulous care and purpose.</p>
+          <h4 data-i18n="about.pillar1title">Precision</h4>
+          <p data-i18n="about.pillar1desc">Every detail executed with meticulous care and purpose.</p>
         </div>
         <div class="pillar reveal reveal-delay-2">
           <div class="pillar-icon">💡</div>
-          <h4>Innovation</h4>
-          <p>Adapting to the ever-evolving landscape of media and events.</p>
+          <h4 data-i18n="about.pillar2title">Innovation</h4>
+          <p data-i18n="about.pillar2desc">Adapting to the ever-evolving landscape of media and events.</p>
         </div>
         <div class="pillar reveal reveal-delay-3">
           <div class="pillar-icon">🤝</div>
-          <h4>Partnership</h4>
-          <p>Fostering lasting relationships with every client.</p>
+          <h4 data-i18n="about.pillar3title">Partnership</h4>
+          <p data-i18n="about.pillar3desc">Fostering lasting relationships with every client.</p>
         </div>
         <div class="pillar reveal reveal-delay-4">
           <div class="pillar-icon">🏆</div>
-          <h4>Excellence</h4>
-          <p>Setting new standards of quality in the Kingdom.</p>
+          <h4 data-i18n="about.pillar4title">Excellence</h4>
+          <p data-i18n="about.pillar4desc">Setting new standards of quality in the Kingdom.</p>
         </div>
       </div>
     </div>
@@ -638,13 +721,13 @@
   <div class="mv-grid">
     <div class="mv-card reveal" data-label="M">
       <div class="mv-icon">🎯</div>
-      <h3>Our Mission</h3>
-      <p>To create memorable and impactful experiences that resonate with Saudi audiences and exceed our clients' expectations. We strive to be the leading force in the media and events industry in Saudi Arabia by delivering high-quality services, fostering lasting relationships, and continuously pushing the boundaries of creativity and innovation.</p>
+      <h3 data-i18n="mission.title">Our Mission</h3>
+      <p data-i18n="mission.text">To create memorable and impactful experiences that resonate with Saudi audiences and exceed our clients' expectations. We strive to be the leading force in the media and events industry in Saudi Arabia by delivering high-quality services, fostering lasting relationships, and continuously pushing the boundaries of creativity and innovation.</p>
     </div>
     <div class="mv-card reveal reveal-delay-2" data-label="V">
       <div class="mv-icon">🔭</div>
-      <h3>Our Vision</h3>
-      <p>To become the foremost leader in the Saudi media and events industry, recognized for our exceptional service, innovative solutions, and unparalleled expertise. We aspire to set new standards of excellence and creativity within the Kingdom, inspiring and shaping the future of media and event production.</p>
+      <h3 data-i18n="vision.title">Our Vision</h3>
+      <p data-i18n="vision.text">To become the foremost leader in the Saudi media and events industry, recognized for our exceptional service, innovative solutions, and unparalleled expertise. We aspire to set new standards of excellence and creativity within the Kingdom, inspiring and shaping the future of media and event production.</p>
     </div>
   </div>
 </section>
@@ -652,64 +735,64 @@
 <!-- SERVICES -->
 <section id="services">
   <div class="services-header reveal">
-    <div class="section-tag">What We Offer</div>
-    <h2 class="section-title" style="color:var(--navy)">Discover Our Services</h2>
-    <p class="section-lead">We put the needs of the end user at the center of everything we create — from strategy to execution.</p>
+    <div class="section-tag" data-i18n="services.tag">What We Offer</div>
+    <h2 class="section-title" style="color:var(--navy)" data-i18n="services.title">Discover Our Services</h2>
+    <p class="section-lead" data-i18n="services.lead">We put the needs of the end user at the center of everything we create — from strategy to execution.</p>
   </div>
   <div class="services-grid">
     <div class="service-card reveal reveal-delay-1">
       <div class="service-num">01</div>
       <div class="service-icon">🎨</div>
-      <h3>Branding</h3>
-      <p>From logo design to full brand strategy — every element crafted to reflect your unique values and establish a strong market presence.</p>
+      <h3 data-i18n="services.s1title">Branding</h3>
+      <p data-i18n="services.s1desc">From logo design to full brand strategy — every element crafted to reflect your unique values and establish a strong market presence.</p>
     </div>
     <div class="service-card featured reveal reveal-delay-2">
       <div class="service-num">02</div>
       <div class="service-icon">📱</div>
-      <h3>Digital Marketing</h3>
-      <p>SEO, social media marketing, and email campaigns — leveraging the latest strategies to enhance visibility and drive meaningful results.</p>
+      <h3 data-i18n="services.s2title">Digital Marketing</h3>
+      <p data-i18n="services.s2desc">SEO, social media marketing, and email campaigns — leveraging the latest strategies to enhance visibility and drive meaningful results.</p>
     </div>
     <div class="service-card reveal reveal-delay-3">
       <div class="service-num">03</div>
       <div class="service-icon">🎬</div>
-      <h3>Content Creation</h3>
-      <p>Video production, photography, bilingual copywriting, and graphic design — compelling content at the heart of your communication.</p>
+      <h3 data-i18n="services.s3title">Content Creation</h3>
+      <p data-i18n="services.s3desc">Video production, photography, bilingual copywriting, and graphic design — compelling content at the heart of your communication.</p>
     </div>
     <div class="service-card reveal reveal-delay-1">
       <div class="service-num">04</div>
       <div class="service-icon">🎪</div>
-      <h3>Events Management</h3>
-      <p>Corporate gatherings, conferences, cultural festivals, and private celebrations — seamless experiences with deep cultural understanding.</p>
+      <h3 data-i18n="services.s4title">Events Management</h3>
+      <p data-i18n="services.s4desc">Corporate gatherings, conferences, cultural festivals, and private celebrations — seamless experiences with deep cultural understanding.</p>
     </div>
     <div class="service-card reveal reveal-delay-2">
       <div class="service-num">05</div>
       <div class="service-icon">🎥</div>
-      <h3>Media Production</h3>
-      <p>TV commercials, documentaries, corporate videos — state-of-the-art production that appeals to the Saudi audience with superior quality.</p>
+      <h3 data-i18n="services.s5title">Media Production</h3>
+      <p data-i18n="services.s5desc">TV commercials, documentaries, corporate videos — state-of-the-art production that appeals to the Saudi audience with superior quality.</p>
     </div>
     <div class="service-card reveal reveal-delay-3">
       <div class="service-num">06</div>
-      <div class="service-icon">🪧</div>
-      <h3>Signage Systems</h3>
-      <p>Custom signage design and manufacturing — architectural, digital, wayfinding, and retail solutions with eco-friendly commitment.</p>
+      <div class="service-icon">🚧</div>
+      <h3 data-i18n="services.s6title">Signage Systems</h3>
+      <p data-i18n="services.s6desc">Custom signage design and manufacturing — architectural, digital, wayfinding, and retail solutions with eco-friendly commitment.</p>
     </div>
     <div class="service-card reveal reveal-delay-1">
       <div class="service-num">07</div>
-      <div class="service-icon">🪵</div>
-      <h3>Carpentry &amp; Molding</h3>
-      <p>Bespoke cabinetry, furniture, architectural molding, and woodworking — blending traditional crafts with cutting-edge technology.</p>
+      <div class="service-icon">🔨</div>
+      <h3 data-i18n="services.s7title">Carpentry &amp; Molding</h3>
+      <p data-i18n="services.s7desc">Bespoke cabinetry, furniture, architectural molding, and woodworking — blending traditional crafts with cutting-edge technology.</p>
     </div>
     <div class="service-card featured reveal reveal-delay-2">
       <div class="service-num">08</div>
       <div class="service-icon">🖼️</div>
-      <h3>Display Stands</h3>
-      <p>Bespoke display stands for retail, exhibitions, and trade shows — professionally installed for impact in any environment.</p>
+      <h3 data-i18n="services.s8title">Display Stands</h3>
+      <p data-i18n="services.s8desc">Bespoke display stands for retail, exhibitions, and trade shows — professionally installed for impact in any environment.</p>
     </div>
     <div class="service-card reveal reveal-delay-3">
       <div class="service-num">09</div>
       <div class="service-icon">⚙️</div>
-      <h3>Fabrication Work</h3>
-      <p>Steel fabrication, stainless steel, visual arts, landscape modelling — comprehensive manufacturing for complete project delivery.</p>
+      <h3 data-i18n="services.s9title">Fabrication Work</h3>
+      <p data-i18n="services.s9desc">Steel fabrication, stainless steel, visual arts, landscape modelling — comprehensive manufacturing for complete project delivery.</p>
     </div>
   </div>
 </section>
@@ -719,31 +802,31 @@
   <div class="add-inner">
     <div class="add-header reveal">
       <div>
-        <div class="section-tag">Comprehensive Capabilities</div>
-        <h2 class="section-title" style="color:var(--navy); margin-bottom:0">Beyond Core Services</h2>
+        <div class="section-tag" data-i18n="additional.tag">Comprehensive Capabilities</div>
+        <h2 class="section-title" style="color:var(--navy); margin-bottom:0" data-i18n="additional.title">Beyond Core Services</h2>
       </div>
-      <p style="color:var(--gray); font-size:0.9rem; max-width:340px; text-align:right">End-to-end solutions ensuring our clients receive complete service for every requirement.</p>
+      <p data-i18n="additional.lead">End-to-end solutions ensuring our clients receive complete service for every requirement.</p>
     </div>
     <div class="add-grid">
       <div class="add-item reveal reveal-delay-1">
         <div class="add-item-icon">🔩</div>
-        <h4>Fabrication Work</h4>
+        <h4 data-i18n="additional.item1">Fabrication Work</h4>
       </div>
       <div class="add-item reveal reveal-delay-2">
         <div class="add-item-icon">🦺</div>
-        <h4>Stainless Steel Fabrication</h4>
+        <h4 data-i18n="additional.item2">Stainless Steel Fabrication</h4>
       </div>
       <div class="add-item reveal reveal-delay-3">
         <div class="add-item-icon">🎭</div>
-        <h4>Visual Arts Design &amp; Execute</h4>
+        <h4 data-i18n="additional.item3">Visual Arts Design &amp; Execute</h4>
       </div>
       <div class="add-item reveal reveal-delay-4">
         <div class="add-item-icon">🌿</div>
-        <h4>Landscape Modelling</h4>
+        <h4 data-i18n="additional.item4">Landscape Modelling</h4>
       </div>
       <div class="add-item reveal reveal-delay-5">
         <div class="add-item-icon">🏗️</div>
-        <h4>Steel Fabrication</h4>
+        <h4 data-i18n="additional.item5">Steel Fabrication</h4>
       </div>
     </div>
   </div>
@@ -753,73 +836,74 @@
 <section id="contact">
   <div class="contact-grid">
     <div class="contact-info reveal">
-      <div class="section-tag">Get in Touch</div>
-      <h2 class="section-title" style="color:white">Let's Build Something <em style="font-style:italic; color:var(--purple-light)">Together</em></h2>
-      <p class="section-lead">We pride ourselves on high professional standards and commitment to every project's details. Reach out to start a conversation.</p>
+      <div class="section-tag" data-i18n="contact.tag">Get in Touch</div>
+      <h2 class="section-title" style="color:white" data-i18n="contact.title">Let's Build Something <em style="font-style:italic; color:var(--purple-light)">Together</em></h2>
+      <p class="section-lead" data-i18n="contact.lead">We pride ourselves on high professional standards and commitment to every project's details. Reach out to start a conversation.</p>
       <div class="contact-details">
         <div class="contact-item">
           <div class="contact-icon">📍</div>
           <div class="contact-item-text">
-            <h4>Address</h4>
-            <p>Prince Mohammed Bin Fahad Rd,<br>Al-Shatea Business Center (A),<br>Dammam, Saudi Arabia</p>
+            <h4 data-i18n="contact.addressLabel">Address</h4>
+            <p data-i18n="contact.addressValue">Prince Mohammed Bin Fahad Rd,<br>Al-Shatea Business Center (A),<br>Dammam, Saudi Arabia</p>
           </div>
         </div>
         <div class="contact-item">
           <div class="contact-icon">📞</div>
           <div class="contact-item-text">
-            <h4>Phone</h4>
+            <h4 data-i18n="contact.phoneLabel">Phone</h4>
             <p>+966 54 261 7295</p>
           </div>
         </div>
         <div class="contact-item">
           <div class="contact-icon">🕐</div>
           <div class="contact-item-text">
-            <h4>Working Hours</h4>
-            <p>Sunday – Thursday: 9:00 AM – 6:00 PM</p>
+            <h4 data-i18n="contact.hoursLabel">Working Hours</h4>
+            <p data-i18n="contact.hoursValue">Sunday – Thursday: 9:00 AM – 6:00 PM</p>
           </div>
         </div>
       </div>
     </div>
     <div class="contact-form reveal reveal-delay-2" id="contact-form-wrap">
+      <div class="form-error" id="form-error"></div>
       <div class="form-row">
         <div class="form-group">
-          <label>First Name</label>
-          <input type="text" placeholder="Mohammed" id="fname">
+          <label data-i18n="form.firstName">First Name</label>
+          <input type="text" name="first_name" data-i18n-placeholder="form.firstNamePh" placeholder="Mohammed" id="fname">
         </div>
         <div class="form-group">
-          <label>Last Name</label>
-          <input type="text" placeholder="Al-Rashid" id="lname">
+          <label data-i18n="form.lastName">Last Name</label>
+          <input type="text" name="last_name" data-i18n-placeholder="form.lastNamePh" placeholder="Al-Rashid" id="lname">
         </div>
       </div>
       <div class="form-group">
-        <label>Email Address</label>
-        <input type="email" placeholder="you@example.com" id="email">
+        <label data-i18n="form.email">Email Address</label>
+        <input type="email" name="email" placeholder="you@example.com" id="email">
       </div>
       <div class="form-group">
-        <label>Service Interested In</label>
-        <select id="service">
-          <option value="">Select a service...</option>
-          <option>Branding</option>
-          <option>Digital Marketing</option>
-          <option>Content Creation</option>
-          <option>Events Management</option>
-          <option>Media Production</option>
-          <option>Signage Systems</option>
-          <option>Carpentry & Molding</option>
-          <option>Display Stands</option>
-          <option>Fabrication Work</option>
-          <option>Other</option>
+        <label data-i18n="form.serviceLabel">Service Interested In</label>
+        <select id="service" name="service">
+          <option value="" data-i18n="form.selectDefault">Select a service...</option>
+          <option value="Branding" data-i18n="services.s1title">Branding</option>
+          <option value="Digital Marketing" data-i18n="services.s2title">Digital Marketing</option>
+          <option value="Content Creation" data-i18n="services.s3title">Content Creation</option>
+          <option value="Events Management" data-i18n="services.s4title">Events Management</option>
+          <option value="Media Production" data-i18n="services.s5title">Media Production</option>
+          <option value="Signage Systems" data-i18n="services.s6title">Signage Systems</option>
+          <option value="Carpentry & Molding" data-i18n="services.s7title">Carpentry &amp; Molding</option>
+          <option value="Display Stands" data-i18n="services.s8title">Display Stands</option>
+          <option value="Fabrication Work" data-i18n="services.s9title">Fabrication Work</option>
+          <option value="Other" data-i18n="form.other">Other</option>
         </select>
       </div>
       <div class="form-group">
-        <label>Message</label>
-        <textarea placeholder="Tell us about your project..." id="message"></textarea>
+        <label data-i18n="form.message">Message</label>
+        <textarea name="message" data-i18n-placeholder="form.messagePh" placeholder="Tell us about your project..." id="message"></textarea>
       </div>
-      <button class="btn-submit" onclick="submitForm()">Send Message →</button>
+      <button type="button" class="btn-submit" id="submit-btn" onclick="submitForm()" data-i18n="form.submit">Send Message →</button>
       <div class="form-success" id="form-success">
         <div class="check">✓</div>
-        <h3>Message Sent!</h3>
-        <p>Thank you for reaching out. We'll get back to you within 24 hours.</p>
+        <h3 data-i18n="form.successTitle">Message Sent!</h3>
+        <p data-i18n="form.successDesc">Thank you for reaching out. We'll get back to you within 24 hours.</p>
       </div>
     </div>
   </div>
@@ -833,35 +917,242 @@
         <div class="logo-icon footer-logo">
     <img src="logo.jpeg" alt="Al Waha Logo">
 </div>
-        <span style="font-family:'Playfair Display',serif;color:white;font-weight:700;font-size:1.1rem;">Al Waha Co</span>
+        <span class="logo-text" style="color:white;font-weight:700;font-size:1.1rem;" data-i18n="nav.logo">Al<span>Waha</span> Co</span>
       </div>
-      <div class="footer-tagline">Excellence in Every Detail, Impact in Every Moment.</div>
+      <div class="footer-tagline" data-i18n="footer.tagline">Excellence in Every Detail, Impact in Every Moment.</div>
     </div>
     <div class="footer-links">
-      <a href="#about">About</a>
-      <a href="#mission">Mission</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#mission" data-i18n="nav.mission">Mission</a>
+      <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
     </div>
   </div>
-  <div class="footer-copy">© 2025 Al Waha Co. All rights reserved. — Dammam, Saudi Arabia</div>
+  <div class="footer-copy" data-i18n="footer.copy">© 2025 Al Waha Co. All rights reserved. — Dammam, Saudi Arabia</div>
 </footer>
 
 <script>
-  // Mobile nav toggle
+  /* ============ TRANSLATIONS ============ */
+  const translations = {
+    en: {
+      "nav.logo": 'Al<span>Waha</span> Co',
+      "nav.about": "About",
+      "nav.mission": "Mission",
+      "nav.services": "Services",
+      "nav.contact": "Contact Us",
+      "hero.badge": "Dammam, Saudi Arabia",
+      "hero.h1": "Excellence in<br>Every <em>Detail</em>,<br>Impact in Every<br>Moment.",
+      "hero.sub": "Al Waha Co is a premier Media & Events company dedicated to crafting unforgettable experiences and delivering exceptional solutions across Saudi Arabia.",
+      "hero.btnPrimary": "Explore Our Services",
+      "hero.btnOutline": "Get in Touch",
+      "hero.stat1num": "8+",
+      "hero.stat1label": "Core Services",
+      "hero.stat2num": "KSA",
+      "hero.stat2label": "Focus Market",
+      "hero.stat3num": "360°",
+      "hero.stat3label": "Solutions",
+      "hero.scrollHint": "Scroll",
+      "about.tag": "Who We Are",
+      "about.title": "A Premier Media &amp; Events Company",
+      "about.lead": "With years of expertise and a passionate team of professionals, we specialize in bringing visions to life through innovative event planning and cutting-edge media production across the Kingdom.",
+      "about.cardQuote": "\u201cBringing visions to life through innovation.\u201d",
+      "about.cardAttr": "Al Waha Co — Est. Dammam, KSA",
+      "about.pillar1title": "Precision",
+      "about.pillar1desc": "Every detail executed with meticulous care and purpose.",
+      "about.pillar2title": "Innovation",
+      "about.pillar2desc": "Adapting to the ever-evolving landscape of media and events.",
+      "about.pillar3title": "Partnership",
+      "about.pillar3desc": "Fostering lasting relationships with every client.",
+      "about.pillar4title": "Excellence",
+      "about.pillar4desc": "Setting new standards of quality in the Kingdom.",
+      "mission.title": "Our Mission",
+      "mission.text": "To create memorable and impactful experiences that resonate with Saudi audiences and exceed our clients' expectations. We strive to be the leading force in the media and events industry in Saudi Arabia by delivering high-quality services, fostering lasting relationships, and continuously pushing the boundaries of creativity and innovation.",
+      "vision.title": "Our Vision",
+      "vision.text": "To become the foremost leader in the Saudi media and events industry, recognized for our exceptional service, innovative solutions, and unparalleled expertise. We aspire to set new standards of excellence and creativity within the Kingdom, inspiring and shaping the future of media and event production.",
+      "services.tag": "What We Offer",
+      "services.title": "Discover Our Services",
+      "services.lead": "We put the needs of the end user at the center of everything we create — from strategy to execution.",
+      "services.s1title": "Branding",
+      "services.s1desc": "From logo design to full brand strategy — every element crafted to reflect your unique values and establish a strong market presence.",
+      "services.s2title": "Digital Marketing",
+      "services.s2desc": "SEO, social media marketing, and email campaigns — leveraging the latest strategies to enhance visibility and drive meaningful results.",
+      "services.s3title": "Content Creation",
+      "services.s3desc": "Video production, photography, bilingual copywriting, and graphic design — compelling content at the heart of your communication.",
+      "services.s4title": "Events Management",
+      "services.s4desc": "Corporate gatherings, conferences, cultural festivals, and private celebrations — seamless experiences with deep cultural understanding.",
+      "services.s5title": "Media Production",
+      "services.s5desc": "TV commercials, documentaries, corporate videos — state-of-the-art production that appeals to the Saudi audience with superior quality.",
+      "services.s6title": "Signage Systems",
+      "services.s6desc": "Custom signage design and manufacturing — architectural, digital, wayfinding, and retail solutions with eco-friendly commitment.",
+      "services.s7title": "Carpentry &amp; Molding",
+      "services.s7desc": "Bespoke cabinetry, furniture, architectural molding, and woodworking — blending traditional crafts with cutting-edge technology.",
+      "services.s8title": "Display Stands",
+      "services.s8desc": "Bespoke display stands for retail, exhibitions, and trade shows — professionally installed for impact in any environment.",
+      "services.s9title": "Fabrication Work",
+      "services.s9desc": "Steel fabrication, stainless steel, visual arts, landscape modelling — comprehensive manufacturing for complete project delivery.",
+      "additional.tag": "Comprehensive Capabilities",
+      "additional.title": "Beyond Core Services",
+      "additional.lead": "End-to-end solutions ensuring our clients receive complete service for every requirement.",
+      "additional.item1": "Fabrication Work",
+      "additional.item2": "Stainless Steel Fabrication",
+      "additional.item3": "Visual Arts Design &amp; Execute",
+      "additional.item4": "Landscape Modelling",
+      "additional.item5": "Steel Fabrication",
+      "contact.tag": "Get in Touch",
+      "contact.title": "Let's Build Something <em style=\"font-style:italic; color:var(--purple-light)\">Together</em>",
+      "contact.lead": "We pride ourselves on high professional standards and commitment to every project's details. Reach out to start a conversation.",
+      "contact.addressLabel": "Address",
+      "contact.addressValue": "Prince Mohammed Bin Fahad Rd,<br>Al-Shatea Business Center (A),<br>Dammam, Saudi Arabia",
+      "contact.phoneLabel": "Phone",
+      "contact.hoursLabel": "Working Hours",
+      "contact.hoursValue": "Sunday – Thursday: 9:00 AM – 6:00 PM",
+      "form.firstName": "First Name",
+      "form.firstNamePh": "Mohammed",
+      "form.lastName": "Last Name",
+      "form.lastNamePh": "Al-Rashid",
+      "form.email": "Email Address",
+      "form.serviceLabel": "Service Interested In",
+      "form.selectDefault": "Select a service...",
+      "form.other": "Other",
+      "form.message": "Message",
+      "form.messagePh": "Tell us about your project...",
+      "form.submit": "Send Message →",
+      "form.sending": "Sending...",
+      "form.successTitle": "Message Sent!",
+      "form.successDesc": "Thank you for reaching out. We'll get back to you within 24 hours.",
+      "form.errRequired": "Please fill in your name and email address.",
+      "form.errSend": "Something went wrong sending your message. Please try again or contact us by phone.",
+      "footer.tagline": "Excellence in Every Detail, Impact in Every Moment.",
+      "footer.copy": "© 2025 Al Waha Co. All rights reserved. — Dammam, Saudi Arabia"
+    },
+    ar: {
+      "nav.logo": 'شركة <span>الواحة</span>',
+      "nav.about": "من نحن",
+      "nav.mission": "رسالتنا",
+      "nav.services": "خدماتنا",
+      "nav.contact": "تواصل معنا",
+      "hero.badge": "الدمام، المملكة العربية السعودية",
+      "hero.h1": "تميّز في<br>كل <em>التفاصيل</em>،<br>وأثر في كل<br>لحظة.",
+      "hero.sub": "شركة الواحة هي شركة رائدة في مجال الإعلام والفعاليات، تكرّس جهودها لصياغة تجارب لا تُنسى وتقديم حلول استثنائية في جميع أنحاء المملكة العربية السعودية.",
+      "hero.btnPrimary": "استكشف خدماتنا",
+      "hero.btnOutline": "تواصل معنا",
+      "hero.stat1num": "+٨",
+      "hero.stat1label": "خدمات أساسية",
+      "hero.stat2num": "السعودية",
+      "hero.stat2label": "سوق التركيز",
+      "hero.stat3num": "°٣٦٠",
+      "hero.stat3label": "حلول متكاملة",
+      "hero.scrollHint": "مرر للأسفل",
+      "about.tag": "من نحن",
+      "about.title": "شركة رائدة في الإعلام والفعاليات",
+      "about.lead": "بفضل سنوات من الخبرة وفريق شغوف من المحترفين، نتخصص في تحويل الرؤى إلى واقع من خلال تخطيط فعاليات مبتكر وإنتاج إعلامي متطور في جميع أنحاء المملكة.",
+      "about.cardQuote": "\u201cنحوّل الرؤى إلى واقع من خلال الابتكار.\u201d",
+      "about.cardAttr": "شركة الواحة — تأسست في الدمام، السعودية",
+      "about.pillar1title": "الدقة",
+      "about.pillar1desc": "ننفّذ كل تفصيلة بعناية فائقة وهدف واضح.",
+      "about.pillar2title": "الابتكار",
+      "about.pillar2desc": "نواكب التطورات المستمرة في عالم الإعلام والفعاليات.",
+      "about.pillar3title": "الشراكة",
+      "about.pillar3desc": "نبني علاقات دائمة مع كل عميل.",
+      "about.pillar4title": "التميز",
+      "about.pillar4desc": "نضع معايير جديدة للجودة في المملكة.",
+      "mission.title": "رسالتنا",
+      "mission.text": "نسعى لخلق تجارب مؤثرة ولا تُنسى تتناغم مع الجمهور السعودي وتتجاوز توقعات عملائنا. نطمح لأن نكون القوة الرائدة في صناعة الإعلام والفعاليات في المملكة العربية السعودية من خلال تقديم خدمات عالية الجودة، وبناء علاقات دائمة، والدفع المستمر بحدود الإبداع والابتكار.",
+      "vision.title": "رؤيتنا",
+      "vision.text": "أن نصبح الرائد الأول في صناعة الإعلام والفعاليات السعودية، معروفين بخدماتنا الاستثنائية وحلولنا المبتكرة وخبرتنا التي لا مثيل لها. نطمح لوضع معايير جديدة للتميز والإبداع داخل المملكة، وإلهام وصياغة مستقبل صناعة الإعلام والفعاليات.",
+      "services.tag": "ما نقدمه",
+      "services.title": "اكتشف خدماتنا",
+      "services.lead": "نضع احتياجات المستخدم النهائي في صميم كل ما نبتكره — من الاستراتيجية إلى التنفيذ.",
+      "services.s1title": "الهوية التجارية",
+      "services.s1desc": "من تصميم الشعار إلى استراتيجية العلامة التجارية الكاملة — كل عنصر مصمم ليعكس قيمك الفريدة ويرسّخ حضورك في السوق.",
+      "services.s2title": "التسويق الرقمي",
+      "services.s2desc": "تحسين محركات البحث، والتسويق عبر وسائل التواصل الاجتماعي، وحملات البريد الإلكتروني — باستخدام أحدث الاستراتيجيات لتعزيز الظهور وتحقيق نتائج ملموسة.",
+      "services.s3title": "صناعة المحتوى",
+      "services.s3desc": "إنتاج الفيديو، والتصوير الفوتوغرافي، والكتابة الإبداعية ثنائية اللغة، والتصميم الجرافيكي — محتوى مؤثر في صميم تواصلك.",
+      "services.s4title": "إدارة الفعاليات",
+      "services.s4desc": "التجمعات المؤسسية، والمؤتمرات، والمهرجانات الثقافية، والاحتفالات الخاصة — تجارب سلسة بفهم ثقافي عميق.",
+      "services.s5title": "الإنتاج الإعلامي",
+      "services.s5desc": "الإعلانات التلفزيونية، والأفلام الوثائقية، وفيديوهات الشركات — إنتاج بأحدث التقنيات يلامس الجمهور السعودي بجودة عالية.",
+      "services.s6title": "أنظمة اللافتات",
+      "services.s6desc": "تصميم وتصنيع اللافتات المخصصة — حلول معمارية ورقمية وإرشادية وتجارية مع التزام بالاستدامة البيئية.",
+      "services.s7title": "النجارة والقولبة",
+      "services.s7desc": "خزائن وأثاث مخصص، وقوالب معمارية، وأعمال خشبية — مزج بين الحرف التقليدية والتقنيات الحديثة.",
+      "services.s8title": "أجنحة العرض",
+      "services.s8desc": "أجنحة عرض مخصصة للمتاجر والمعارض والفعاليات التجارية — تُركّب باحترافية لتحقيق أثر في أي بيئة.",
+      "services.s9title": "أعمال التصنيع",
+      "services.s9desc": "تصنيع الحديد والصلب، والفنون البصرية، ونمذجة المناظر الطبيعية — تصنيع شامل لإنجاز المشاريع بالكامل.",
+      "additional.tag": "قدرات شاملة",
+      "additional.title": "ما بعد الخدمات الأساسية",
+      "additional.lead": "حلول متكاملة تضمن حصول عملائنا على خدمة كاملة لكل احتياج.",
+      "additional.item1": "أعمال التصنيع",
+      "additional.item2": "تصنيع الصلب غير القابل للصدأ",
+      "additional.item3": "تصميم وتنفيذ الفنون البصرية",
+      "additional.item4": "نمذجة المناظر الطبيعية",
+      "additional.item5": "تصنيع الحديد",
+      "contact.tag": "تواصل معنا",
+      "contact.title": "فلنبنِ شيئاً <em style=\"font-style:normal; color:var(--purple-light)\">معاً</em>",
+      "contact.lead": "نفخر بمعاييرنا المهنية العالية والتزامنا بتفاصيل كل مشروع. تواصل معنا لبدء الحديث.",
+      "contact.addressLabel": "العنوان",
+      "contact.addressValue": "طريق الأمير محمد بن فهد،<br>مركز الشاطئ للأعمال (أ)،<br>الدمام، المملكة العربية السعودية",
+      "contact.phoneLabel": "الهاتف",
+      "contact.hoursLabel": "ساعات العمل",
+      "contact.hoursValue": "الأحد – الخميس: ٩:٠٠ صباحاً – ٦:٠٠ مساءً",
+      "form.firstName": "الاسم الأول",
+      "form.firstNamePh": "محمد",
+      "form.lastName": "اسم العائلة",
+      "form.lastNamePh": "الراشد",
+      "form.email": "البريد الإلكتروني",
+      "form.serviceLabel": "الخدمة المطلوبة",
+      "form.selectDefault": "اختر خدمة...",
+      "form.other": "أخرى",
+      "form.message": "الرسالة",
+      "form.messagePh": "أخبرنا عن مشروعك...",
+      "form.submit": "إرسال الرسالة ←",
+      "form.sending": "جارٍ الإرسال...",
+      "form.successTitle": "تم إرسال الرسالة!",
+      "form.successDesc": "شكراً لتواصلك معنا. سنقوم بالرد عليك خلال ٢٤ ساعة.",
+      "form.errRequired": "يرجى إدخال الاسم والبريد الإلكتروني.",
+      "form.errSend": "حدث خطأ أثناء إرسال رسالتك. يرجى المحاولة مرة أخرى أو التواصل معنا هاتفياً.",
+      "footer.tagline": "التميز في كل التفاصيل، والأثر في كل لحظة.",
+      "footer.copy": "© ٢٠٢٥ شركة الواحة. جميع الحقوق محفوظة. — الدمام، المملكة العربية السعودية"
+    }
+  };
+
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    if (!translations[lang]) return;
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang][key] !== undefined) el.innerHTML = translations[lang][key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (translations[lang][key] !== undefined) el.placeholder = translations[lang][key];
+    });
+    document.querySelectorAll('.lang-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+
+    try { localStorage.setItem('alwaha_lang', lang); } catch (e) {}
+  }
+
+  /* ============ MOBILE NAV ============ */
   function toggleMenu() {
     const menu = document.getElementById('nav-menu');
     menu.classList.toggle('open');
   }
-
-  // Close menu on link click
   document.querySelectorAll('#nav-menu a').forEach(a => {
     a.addEventListener('click', () => {
       document.getElementById('nav-menu').classList.remove('open');
     });
   });
 
-  // Scroll reveal
+  /* ============ SCROLL REVEAL ============ */
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -873,7 +1164,7 @@
   }, { threshold: 0.1 });
   reveals.forEach(r => observer.observe(r));
 
-  // Nav scroll effect
+  /* ============ NAV SCROLL EFFECT ============ */
   window.addEventListener('scroll', () => {
     const nav = document.getElementById('navbar');
     if (window.scrollY > 60) {
@@ -883,19 +1174,70 @@
     }
   });
 
-  // Form submit
-  function submitForm() {
+  /* ============ FORMSPREE CONTACT FORM ============ */
+  // ⚠️ Replace YOUR_FORM_ID below with your actual Formspree form ID
+  // (from https://formspree.io — e.g. "https://formspree.io/f/abcdwxyz")
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xpqegbzp';
+
+  async function submitForm() {
     const fname = document.getElementById('fname').value.trim();
+    const lname = document.getElementById('lname').value.trim();
     const email = document.getElementById('email').value.trim();
+    const service = document.getElementById('service').value;
+    const message = document.getElementById('message').value.trim();
+    const errorBox = document.getElementById('form-error');
+    const btn = document.getElementById('submit-btn');
+
+    errorBox.style.display = 'none';
+
     if (!fname || !email) {
-      alert('Please fill in your name and email address.');
+      errorBox.textContent = translations[currentLang]['form.errRequired'];
+      errorBox.style.display = 'block';
       return;
     }
-    const form = document.getElementById('contact-form-wrap');
-    form.querySelectorAll('input, textarea, select, button').forEach(el => el.style.display = 'none');
-    const success = document.getElementById('form-success');
-    success.style.display = 'block';
+
+    const originalLabel = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = translations[currentLang]['form.sending'];
+
+    const formData = new FormData();
+    formData.append('first_name', fname);
+    formData.append('last_name', lname);
+    formData.append('email', email);
+    formData.append('service', service);
+    formData.append('message', message);
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      });
+
+      if (res.ok) {
+        const form = document.getElementById('contact-form-wrap');
+        form.querySelectorAll('input, textarea, select, button, .form-error').forEach(el => el.style.display = 'none');
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        errorBox.textContent = translations[currentLang]['form.errSend'];
+        errorBox.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = originalLabel;
+      }
+    } catch (err) {
+      errorBox.textContent = translations[currentLang]['form.errSend'];
+      errorBox.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = originalLabel;
+    }
   }
+
+  /* ============ INIT ============ */
+  window.addEventListener('DOMContentLoaded', () => {
+    let saved = 'en';
+    try { saved = localStorage.getItem('alwaha_lang') || 'en'; } catch (e) {}
+    setLang(saved);
+  });
 </script>
 </body>
 </html>
